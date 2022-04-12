@@ -1,0 +1,62 @@
+<!--
+    Follows the following structure of the FormGroup and FormControl outlined in profile.component.ts
+    It is recommended for code readability to follow the structure defined in the component model to
+    ensure data is mapped accordingly and that code is maintainable by others who follow.
+
+    profile.component.ts FormGroup and FormControl structure:
+    
+    profileForm - FormGroup
+        title - FormControl
+        firstName - FormControl
+        lastName - FormControl
+        address - FormGroup
+            street - FormControl
+            town - FormControl
+            city - FormControl
+            county - FormControl
+            postCode - FormControl
+-->
+<h2>Nested form groups</h2>
+<form [formGroup]="profileForm"> <!-- define the parent FormGroup following the exact same layout of the data provided in profile.component.ts -->
+
+    <h3>Name</h3>
+
+    <label for="title">Title: </label>
+    <input id="title" type="text" formControlName="title">
+
+    <label for="firstName">First Name: </label>
+    <input id="firstName" type="text" formControlName="firstName" required> <!-- 'required' tag indicates a value for this input must be present or it will invalidate the FormGroup -->
+  
+    <label for="lastName">Last Name: </label>
+    <input id="lastName" type="text" formControlName="lastName">
+  
+    <div formGroupName="address"> <!-- Only obtains and binds the FormControls associated with the Address FormGroup -->
+        <h3>Address</h3>
+      
+        <label for="street">Street: </label>
+        <input id="street" type="text" formControlName="street">
+      
+        <label for="town">Town: </label>
+        <input id="town" type="text" formControlName="town" required> <!-- 'required' tag indicates a value for this input must be present or it will invalidate the FormGroup. This applies to all FormGroups for profileForm -->
+    
+        <label for="city">City: </label>
+        <input id="city" type="text" formControlName="city">
+      
+        <label for="county">County: </label>
+        <input id="county" type="text" formControlName="county">
+      
+        <label for="postCode">Post Code: </label>
+        <input id="postCode" type="text" formControlName="postCode">
+
+    </div>
+
+    <p>Complete the form to enable button.</p> <!-- Helper prompt for a user explaining what to do to enable the button to submit -->
+    <button type="submit" [disabled]="!profileForm.valid">Submit</button> <!-- Button will only become enabled for interaction when the input fields labelled with the 'required' tag are populated (no event linked to conduct an action) -->
+  </form>
+
+  <p>Form Status: {{ profileForm.status }}</p> <!-- Shows a user the overall status of validity for profileForm. If Empty: INVALID, if not empty: VALID -->
+  <p>Form Value: {{ profileForm.value | json }}</p> <!-- Provides the overall value of the form attributes and pipes the output to a JSON format -->
+
+  <button type="button" (click)="updateProfile()">Update Profile</button> <!-- Links to updateProfile() function providing an auto-generated profile to populate FormControls of both parent and child FormGroups -->
+
+  <hr>

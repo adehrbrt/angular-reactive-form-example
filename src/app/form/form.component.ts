@@ -18,6 +18,6 @@ export class FormComponent implements OnInit {
    * Forms the quote 'Hello Pirates!' from Brian Blessed character 'The Pirate King' from the aardman film 'The Pirates! In an adventure with Scientists" 
    */
   updateName() {
-    this.name.setValue('Pirates!');
+    this.name.setValue('Pirates!')
   }
 }

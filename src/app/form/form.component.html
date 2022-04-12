@@ -1,7 +1,10 @@
+<h2>Reactive response using template binding syntax</h2>
+
 <label for="name">Name: </label>
 <input id="name" type="text" [formControl]="name"> <!-- formControl binding to defined property in form.component.ts. Using the template binding syntax allows for the 'name' FormControl to be bound for use.  -->
 
-<h2>Reactive response using template binding</h2>
-<p>Hello {{ name.value }}</p>
+<p>Hello {{ name.value }}</p> <!-- Links directly to the FormControl 'name' and provides its assigned value dynamically -->
 
-<button type="button" (click)="updateName()">Update Name</button> <!-- Links to updateName() function to set value defined -->
+<button type="button" (click)="updateName()">Update Name</button> <!-- Links to updateName() function to set name value defined -->
+
+<hr>
