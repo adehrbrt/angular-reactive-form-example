@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -11,12 +11,12 @@ export class ProfileComponent implements OnInit {
   // Profile FormGroup to contain FormControls
   profileForm = this.fb.group({
     title: [''],
-    firstName: [''],
+    firstName: ['', Validators.required], // Signifies via Angular that this value must be present for the profileForm to be considered VALID
     lastName: [''],
     // Address sub FormGroup to contain further FormControls related to both 'Profile' and 'Address'
     address: this.fb.group({
       street: [''],
-      town: [''],
+      town: ['', Validators.required], // Signifies via Angular that this value must be present for the profileForm to be considered VALID
       city: [''],
       county: [''],
       postCode: ['']
@@ -32,10 +32,6 @@ export class ProfileComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void { }
-
-  onSubmit() {
-    console.warn(this.profileForm.value)
-  }
 
   /**
    * Generate an alias of the 10th Doctor from 'Doctor Who' (Season 3, Episodes 8 + 9: 'Human Nature' + 'The Family of Blood').
